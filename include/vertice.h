@@ -24,14 +24,9 @@ class Vertice {
         void adicionarAresta(Aresta* aresta) { arestas->adicionar(aresta); }
 
         bool isVerticeAdjacente(Vertice* vertice) {
-
-            Aresta* arestaAtual = arestas->getPrimeiro()->getElemento();
-
-            while (arestaAtual != nullptr) {
-                if (arestaAtual->getDestino() == vertice) {
-                    return true;
-                }
-                arestaAtual = arestas->getProximoLista()->getElemento();
+            for (Aresta* aresta : *arestas)
+            {
+                if (aresta->getDestino() == vertice) return true;
             }
 
             return false;
