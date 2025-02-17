@@ -3,12 +3,16 @@
 
 #include <string>
 
+class Vertice;
+
 class Aresta {
     private:
-        no destino;
+        Vertice* destino;
         int custo;
     public:
-        Aresta(no destino, int custo) : destino(destino), custo(custo) {}
+        Aresta(Vertice* destino, int custo) : destino(destino), custo(custo) {}
         int getCusto() { return custo; }
 
 };
+
+#endif // ARESTA_H

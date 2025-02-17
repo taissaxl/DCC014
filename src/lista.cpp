@@ -1,4 +1,6 @@
 #include "lista.h"
+#include "aresta.h"
+#include "vertice.h"
 #include <cstddef>
 
 template <typename T>
@@ -82,3 +84,5 @@ No<T>* Lista<T>::getUltimo() {
 }
 
 template class Lista<int>;
+template class Lista<Aresta>;
+template class Lista<Vertice>;
