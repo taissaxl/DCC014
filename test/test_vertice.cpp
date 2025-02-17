@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 #include "vertice.h"
-#include "no.h"
 
 class VerticeTest : public ::testing::Test {
 protected:
