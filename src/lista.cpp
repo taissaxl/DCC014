@@ -1,12 +1,12 @@
 #include "lista.h"
 
-Lista::Lista() {
+Lista<T>::Lista() {
     this->primeiro = NULL;
     this->ultimo = NULL;
     this->tamanho = 0;
 }
 
-Lista::~Lista() {
+Lista<T>::~Lista() {
     No* atual = this->primeiro;
     while (atual != NULL) {
         No* proximo = atual->proximo;
@@ -15,7 +15,7 @@ Lista::~Lista() {
     }
 }
 
-void Lista::adicionar(T* elemento) {
+void Lista<T>::adicionar(T* elemento) {
     No* novo = new No;
     novo->elemento = elemento;
     novo->proximo = NULL;
@@ -29,7 +29,7 @@ void Lista::adicionar(T* elemento) {
     this->tamanho++;
 }
 
-void Lista::remover(T* elemento) {
+void Lista<T>::remover(T* elemento) {
     if (this->primeiro == NULL)
         return;
 
@@ -57,27 +57,31 @@ void Lista::remover(T* elemento) {
     this->tamanho--;
 }
 
-bool Lista::estaVazia() {
+bool Lista<T>::estaVazia() {
     return this->primeiro == NULL;
 }
 
-int Lista::getTamanho() {
+int Lista<T>::getTamanho() {
     return this->tamanho;
 }
 
-No<T>* Lista::getPrimeiro() {
+template <typename T>
+No<T>* Lista<T>::getPrimeiro() {
     return this->primeiro;
 }
 
-No<T>* Lista::getUltimo() {
+template <typename T>
+No<T>* Lista<T>::getUltimo() {
     return this->ultimo;
 }
 
-void Lista::setPrimeiro(No<T>* primeiro) {
+template <typename T>
+void Lista<T>::setPrimeiro(No<T>* primeiro) {
     this->primeiro = primeiro;
 }
 
-void Lista::setUltimo(No<T>* ultimo) {
+template <typename T>
+void Lista<T>::setUltimo(No<T>* ultimo) {
     this->ultimo = ultimo;
 }
 

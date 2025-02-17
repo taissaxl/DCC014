@@ -1,6 +1,8 @@
 #ifndef LISTA_H
 #define LISTA_H
 
+#include "no.h"
+
 using namespace std;
 
 template <typename T>
@@ -19,7 +21,7 @@ class Lista {
         No<T>* getUltimo();
         int getTamanho();
         void setPrimeiro(No<T>* primeiro);
-        void setUltimo(No<T>* ultimo)
+        void setUltimo(No<T>* ultimo);
 };
 
 #endif // LISTA_H
