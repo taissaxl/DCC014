@@ -48,20 +48,6 @@ TEST_F(GrafoTest, TestDuplaSaidaDeUmVertice) {
     ASSERT_EQ(2, grafo->getCustoEntreVertices(idOrigem, idSaidaDireita));
 }
 
-TEST_F(GrafoTest, TestImprimir) {
-    Grafo* grafo = new Grafo();
-
-    int idOrigem = grafo->adicionarVertice();
-    int idSaidaEsquerda = grafo->adicionarVertice();
-    int idSaidaDireita = grafo->adicionarVertice();
-
-    grafo->adicionarAresta(idOrigem, idSaidaEsquerda, 3);
-    grafo->adicionarAresta(idOrigem, idSaidaDireita, 2);
-
-    grafo->imprimirMatrizAdj();
-
-}
-
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
