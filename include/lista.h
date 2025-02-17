@@ -19,6 +19,7 @@ class Lista {
         void remover(T* elemento);
         No<T>* getPrimeiro();
         No<T>* getUltimo();
+        bool estaVazia();
         int getTamanho();
         void setPrimeiro(No<T>* primeiro);
         void setUltimo(No<T>* ultimo);

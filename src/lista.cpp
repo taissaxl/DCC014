@@ -1,22 +1,26 @@
 #include "lista.h"
+#include <cstddef>
 
+template <typename T>
 Lista<T>::Lista() {
     this->primeiro = NULL;
     this->ultimo = NULL;
     this->tamanho = 0;
 }
 
+template <typename T>
 Lista<T>::~Lista() {
-    No* atual = this->primeiro;
+    No<T>* atual = this->primeiro;
     while (atual != NULL) {
-        No* proximo = atual->proximo;
+        No<T>* proximo = atual->proximo;
         delete atual;
         atual = proximo;
     }
 }
 
+template <typename T>
 void Lista<T>::adicionar(T* elemento) {
-    No* novo = new No;
+    No<T>* novo = new No<T>;
     novo->elemento = elemento;
     novo->proximo = NULL;
     if (this->primeiro == NULL) {
@@ -29,12 +33,13 @@ void Lista<T>::adicionar(T* elemento) {
     this->tamanho++;
 }
 
+template <typename T>
 void Lista<T>::remover(T* elemento) {
     if (this->primeiro == NULL)
         return;
 
-    No* anterior = NULL;
-    No* atual = this->primeiro;
+    No<T>* anterior = NULL;
+    No<T>* atual = this->primeiro;
     while (atual != NULL && atual->elemento != elemento) {
         anterior = atual;
         atual = atual->proximo;
@@ -57,10 +62,12 @@ void Lista<T>::remover(T* elemento) {
     this->tamanho--;
 }
 
+template <typename T>
 bool Lista<T>::estaVazia() {
     return this->primeiro == NULL;
 }
 
+template <typename T>
 int Lista<T>::getTamanho() {
     return this->tamanho;
 }
