@@ -23,21 +23,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Adiciona bibliotecas
 
 add_library(lista src/lista.cpp)
-add_library (grafo src/grafo.cpp)
+add_library (grafo src/grafo.cpp src/lista.cpp)
 
 
 # Cria o executável
 add_executable(BuscaCidade app/main.cpp)
 
 
-# Create a test executable
+# Cria o executaveis do teste
 add_executable(test_lista test/test_lista.cpp)
 add_executable(test_vertice test/test_vertice.cpp)
 add_executable(test_aresta test/test_aresta.cpp)
 add_executable(test_fazerGrafoSemClasseGrafo test/test_fazerGrafoSemClasseGrafo.cpp)
 add_executable(test_grafo test/test_grafo.cpp)
 
-# Link the test executable to the lista library
+# Linka os executaveis com as bibliotecas necessarias
 target_link_libraries(test_lista lista ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_vertice lista ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_fazerGrafoSemClasseGrafo lista ${GTEST_LIBRARIES} pthread)

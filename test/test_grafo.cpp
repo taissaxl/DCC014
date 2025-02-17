@@ -16,13 +16,22 @@ class GrafoTest : public ::testing::Test {
 };
 
 TEST_F(GrafoTest, TestAdicionaVertice) {
-    Grafo grafo = new Grafo();
+    Grafo* grafo = new Grafo();
 
-    Vertice* v = new Vertice(0);
+    int idVertice = grafo->adicionarVertice();
 
-    grafo.adicionarVertice(v);
+    ASSERT_EQ(0, grafo->getVertice(idVertice)->getId());
+}
 
-    ASSERT_EQ(v, grafo.getVertice(0));
+TEST_F(GrafoTest, TestAdicionaAresta) {
+    Grafo* grafo = new Grafo();
+
+    int idOrigem = grafo->adicionarVertice();
+    int idDestino = grafo->adicionarVertice();
+
+    grafo->adicionarAresta(idOrigem, idDestino, 3);
+
+    ASSERT_EQ(3, grafo->getCustoEntreVertices(idOrigem, idDestino));
 }
 
 int main(int argc, char **argv) {

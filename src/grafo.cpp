@@ -13,12 +13,17 @@ Grafo::~Grafo() {
     delete vertices;
 }
 
-void Grafo::adicionarVertice(Vertice* vertice) {
+int Grafo::adicionarVertice() {
+    Vertice* vertice = new Vertice(numVertices);
     vertices->adicionar(vertice);
     numVertices++;
+    return numVertices - 1;
 }
 
-void Grafo::adicionarAresta(Vertice* origem, Vertice* destino, int custo) {
+void Grafo::adicionarAresta(int idOrigem, int idDestino, int custo) {
+
+    Vertice* origem = getVertice(idOrigem);
+    Vertice* destino = getVertice(idDestino);
 
     if (origem->getId() == destino->getId()) {
         return;
@@ -40,16 +45,24 @@ void Grafo::adicionarAresta(Vertice* origem, Vertice* destino, int custo) {
 
 Vertice* Grafo::getVertice(int id) {
 
-    if (vertices->getPrimeiro() == nullptr) return;
+    if (vertices->getPrimeiro() == nullptr) return nullptr;
 
-    Vertice *vAtual = vertices->getPrimeiro();
-
-    while (vAtual != nullptr)
+    for (Vertice* vertice : *vertices)
     {
-        if (vAtual->getId() == id) return vAtual;
-
-        vAtual = vertices->getProximo();
+        if (vertice->getId() == id) return vertice;
     }
 
-    return;
+    return nullptr;
+}
+
+int Grafo::getCustoEntreVertices(int origemId, int destinoId)
+{
+    Vertice* origem = getVertice(origemId);
+
+    for (Aresta* aresta : *origem->getArestas())
+    {
+        if (aresta->getDestino() == getVertice(destinoId)) return aresta->getCusto();
+    }
+
+    return -1;
 }

@@ -12,8 +12,9 @@ class Grafo {
     public:
         Grafo();
         ~Grafo();
-        void adicionarVertice(Vertice* vertice);
-        void adicionarAresta(Vertice* origem, Vertice* destino, int custo);
+        int adicionarVertice();
+        void adicionarAresta(int idOrigem, int idDestino, int custo);
+        int getCustoEntreVertices(int origemId, int destinoId);
 
         Vertice* getVertice(int id);
         //void imprimirGrafo();
