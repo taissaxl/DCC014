@@ -12,7 +12,7 @@ template <typename T>
 Lista<T>::~Lista() {
     No<T>* atual = this->primeiro;
     while (atual != NULL) {
-        No<T>* proximo = atual->proximo;
+        No<T>* proximo = atual->getProximo();
         delete atual;
         atual = proximo;
     }
@@ -20,14 +20,13 @@ Lista<T>::~Lista() {
 
 template <typename T>
 void Lista<T>::adicionar(T* elemento) {
-    No<T>* novo = new No<T>;
-    novo->elemento = elemento;
-    novo->proximo = NULL;
+    No<T>* novo = new No<T>(elemento);
+    novo->setProximo(NULL);
     if (this->primeiro == NULL) {
         this->primeiro = novo;
         this->ultimo = novo;
     } else {
-        this->ultimo->proximo = novo;
+        this->ultimo->setProximo(novo);
         this->ultimo = novo;
     }
     this->tamanho++;
@@ -40,18 +39,18 @@ void Lista<T>::remover(T* elemento) {
 
     No<T>* anterior = NULL;
     No<T>* atual = this->primeiro;
-    while (atual != NULL && atual->elemento != elemento) {
+    while (atual != NULL && atual->getElemento() != elemento) {
         anterior = atual;
-        atual = atual->proximo;
+        atual = atual->getProximo();
     }
 
-    if (atual == NULL)
+    if (atual == NULL) //nao achou o elemento
         return;
 
-    if (anterior == NULL) {
-        this->primeiro = atual->proximo;
+    if (anterior == NULL) { // o elemento eh o começo
+        this->primeiro = atual->getProximo();
     } else {
-        anterior->proximo = atual->proximo;
+        anterior->setProximo(atual->getProximo());
     }
 
     if (atual == this->ultimo) {
@@ -82,14 +81,4 @@ No<T>* Lista<T>::getUltimo() {
     return this->ultimo;
 }
 
-template <typename T>
-void Lista<T>::setPrimeiro(No<T>* primeiro) {
-    this->primeiro = primeiro;
-}
-
-template <typename T>
-void Lista<T>::setUltimo(No<T>* ultimo) {
-    this->ultimo = ultimo;
-}
-
-
+template class Lista<int>;

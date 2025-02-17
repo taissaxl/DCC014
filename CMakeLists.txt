@@ -35,6 +35,7 @@ add_executable(test_lista test/test_lista.cpp)
 # Link the test executable to the lista library
 target_link_libraries(test_lista lista ${GTEST_LIBRARIES} pthread)
 
+
 # Add the test to CTest
 add_test(NAME test_lista COMMAND test_lista)
 
