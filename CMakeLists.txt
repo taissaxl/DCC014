@@ -27,7 +27,7 @@ add_library (grafo src/grafo.cpp src/lista.cpp)
 
 
 # Cria o executável
-add_executable(BuscaCidade app/main.cpp)
+add_executable(BuscaCidade app/main.cpp src/grafo.cpp src/lista.cpp)
 
 
 # Cria o executaveis do teste

@@ -66,3 +66,38 @@ int Grafo::getCustoEntreVertices(int origemId, int destinoId)
 
     return -1;
 }
+
+void Grafo::imprimirMatrizAdj()
+{
+    bool achouAresta;
+    cout << "~ | ";
+
+    //Primeira linha
+
+    for (Vertice* vertice : *vertices) {
+        cout << vertice->getId() << " | ";
+    }
+
+    cout << endl;
+
+    for (Vertice* jVertice : *vertices) {
+        cout << jVertice->getId() << " | "; //imprime a primeira coluna, depois as adjacencias
+        
+        for (Vertice* iVertice : *vertices) {
+            achouAresta = false;
+            for (Aresta* aresta : *jVertice->getArestas()) {
+                    if (aresta->getDestino() == iVertice) {
+                        cout << getCustoEntreVertices(iVertice->getId(), jVertice->getId()) << " | ";
+                        achouAresta = true;
+                        break;
+                    } 
+            }
+
+            if (achouAresta == false) cout << "0 | ";
+        }
+
+        cout << endl;
+    }
+
+    
+}

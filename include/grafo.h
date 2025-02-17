@@ -17,7 +17,7 @@ class Grafo {
         int getCustoEntreVertices(int origemId, int destinoId);
 
         Vertice* getVertice(int id);
-        //void imprimirGrafo();
+        void imprimirMatrizAdj();
         //int getNumVertices() { return numVertices; }
         //int getNumArestas() { return numArestas; }
         //Lista<Vertice>* getVertices() { return vertices; }
