@@ -22,12 +22,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Adiciona bibliotecas
 
-add_library(lista src/lista.cpp)
-add_library (grafo src/grafo.cpp src/lista.cpp)
+add_library(lista src/grafo/lista.cpp)
+add_library (grafo src/grafo/grafo.cpp src/grafo/lista.cpp)
 
 
 # Cria o executável
-add_executable(BuscaCidade app/main.cpp src/grafo.cpp src/lista.cpp)
+add_executable(BuscaCidade app/main.cpp src/grafo/grafo.cpp src/grafo/lista.cpp)
 
 
 # Cria o executaveis do teste
