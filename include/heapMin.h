@@ -1,3 +1,6 @@
+#ifndef HEAPMIN_H
+#define HEAPMIN_H
+
 using namespace std;
 
 class HeapMin {
@@ -18,3 +21,5 @@ class HeapMin {
         int getTamanho();
         void imprimir();
 }
+
+#endif
