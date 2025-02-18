@@ -5,7 +5,8 @@ mostrar_menu() {
     echo "Escolha uma opção:"
     echo "1. Buildar o projeto"
     echo "2. Executar o projeto"
-    echo "3. Sair"
+    echo "3. Compilar e executar ctest"
+    echo "0. Sair"
     read opcao
 }
 
@@ -26,7 +27,15 @@ while true; do
         ./BuscaCidade
         cd ..
         ;;
-    3)
+    3) 
+        rm -rf build
+        mkdir -p build
+        cd build
+        cmake ..
+        make
+        ctest
+        ;;
+    0)
         echo "Saindo..."
         exit 0
         ;;
