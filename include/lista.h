@@ -21,6 +21,7 @@ class Lista {
         No<T>* getUltimo();
         bool estaVazia();
         int getTamanho();
+        void inserirNoInicio(T* elemento);
 
         class Iterador {
             private:
@@ -40,6 +41,11 @@ class Lista {
                 // desigualdade
                 bool operator!=(const Iterador& outro) const {
                     return atual != outro.atual;
+                }
+
+                // igualdade
+                bool operator==(const Iterador& outro) const {
+                    return atual == outro.atual;
                 }
         
                 // retorna o elemento do iterador

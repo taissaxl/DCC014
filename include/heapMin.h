@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <algorithm>
+#include "aresta.h"
+#include "vertice.h"
 using namespace std;
 
 class HeapMin {
@@ -102,6 +104,10 @@ public:
                 return;
             }
         }
+    }
+
+    int getTamanho() {
+        return tamanho;
     }
 };
 

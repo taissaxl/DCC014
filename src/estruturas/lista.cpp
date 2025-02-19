@@ -83,6 +83,14 @@ No<T>* Lista<T>::getUltimo() {
     return this->ultimo;
 }
 
+template <typename T>
+void Lista<T>::inserirNoInicio(T* elemento) {
+    No<T>* novo = new No<T>(elemento);
+    novo->setProximo(this->primeiro);
+    this->primeiro = novo;
+    this->tamanho++;
+}
+
 template class Lista<int>;
 template class Lista<Aresta>;
 template class Lista<Vertice>;
