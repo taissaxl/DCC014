@@ -21,7 +21,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Adiciona bibliotecas
 add_library(lista src/estruturas/lista.cpp)
-add_library(grafo src/util/fazGrafo.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp src/algoritmos/gulosa.cpp)
+add_library(grafo src/util/fazGrafo.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp src/algoritmos/gulosa.cpp src/algoritmos/aEstrela.cpp)
 
 # Cria o executável
 add_executable(BuscaCidade app/main.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp)
@@ -35,6 +35,7 @@ add_executable(test_grafo test/test_grafo.cpp)
 add_executable(test_fazGrafo test/test_fazGrafo.cpp)
 add_executable(test_heapMin test/test_heapMin.cpp)
 add_executable(test_buscaGulosa test/test_buscaGulosa.cpp)
+add_executable(test_buscaAEstrela test/test_buscaAEstrela.cpp)
 
 # Linka os executáveis com as bibliotecas necessárias
 target_link_libraries(test_lista lista ${GTEST_LIBRARIES} pthread)
@@ -45,6 +46,7 @@ target_link_libraries(test_grafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_fazGrafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_heapMin grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaGulosa grafo ${GTEST_LIBRARIES} pthread)
+target_link_libraries(test_buscaAEstrela grafo ${GTEST_LIBRARIES} pthread)
 
 # Add the test to CTest
 add_test(NAME test_lista COMMAND test_lista)
@@ -55,6 +57,7 @@ add_test(NAME test_grafo COMMAND test_grafo)
 add_test(NAME test_fazGrafo COMMAND test_fazGrafo)
 add_test(NAME test_heapMin COMMAND test_heapMin)
 add_test(NAME test_buscaGulosa COMMAND test_buscaGulosa)
+add_test(NAME test_buscaAEstrela COMMAND test_buscaAEstrela)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
