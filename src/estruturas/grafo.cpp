@@ -19,11 +19,15 @@ int Grafo::adicionarVertice() {
     numVertices++;
     return numVertices - 1;
 }
-
 void Grafo::adicionarAresta(int idOrigem, int idDestino, int custo) {
-
     Vertice* origem = getVertice(idOrigem);
     Vertice* destino = getVertice(idDestino);
+
+    if (origem == nullptr || destino == nullptr) {
+        std::cerr << "Erro: Tentativa de adicionar aresta com vértice inexistente ("
+                  << idOrigem << " -> " << idDestino << ")." << std::endl;
+        return;
+    }
 
     if (origem->getId() == destino->getId()) {
         return;
@@ -40,7 +44,6 @@ void Grafo::adicionarAresta(int idOrigem, int idDestino, int custo) {
     destino->adicionarAresta(aresta);
 
     numArestas++;
-    
 }
 
 Vertice* Grafo::getVertice(int id) {
