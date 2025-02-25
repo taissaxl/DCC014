@@ -34,6 +34,7 @@ add_executable(test_fazerGrafoSemClasseGrafo test/test_fazerGrafoSemClasseGrafo.
 add_executable(test_grafo test/test_grafo.cpp)
 add_executable(test_fazGrafo test/test_fazGrafo.cpp)
 add_executable(test_heapMin test/test_heapMin.cpp)
+add_executable(test_buscaOrdenada test/test_buscaOrdenada.cpp)
 add_executable(test_buscaGulosa test/test_buscaGulosa.cpp)
 add_executable(test_buscaAEstrela test/test_buscaAEstrela.cpp)
 
@@ -45,6 +46,7 @@ target_link_libraries(test_aresta lista ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_grafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_fazGrafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_heapMin grafo ${GTEST_LIBRARIES} pthread)
+target_link_libraries(test_buscaOrdenada grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaGulosa grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaAEstrela grafo ${GTEST_LIBRARIES} pthread)
 
@@ -56,6 +58,7 @@ add_test(NAME test_aresta COMMAND test_aresta)
 add_test(NAME test_grafo COMMAND test_grafo)
 add_test(NAME test_fazGrafo COMMAND test_fazGrafo)
 add_test(NAME test_heapMin COMMAND test_heapMin)
+add_test(NAME test_buscaOrdenada COMMAND test_buscaOrdenada)
 add_test(NAME test_buscaGulosa COMMAND test_buscaGulosa)
 add_test(NAME test_buscaAEstrela COMMAND test_buscaAEstrela)
 
