@@ -18,6 +18,10 @@ class Grafo {
 
         Vertice* getVertice(int id);
         void imprimirMatrizAdj();
+
+        bool existeAresta(int idOrigem, int idDestino) {
+            return (getCustoEntreVertices(idOrigem, idDestino) == -1) ? false : true;
+        }
         //int getNumVertices() { return numVertices; }
         //int getNumArestas() { return numArestas; }
         //Lista<Vertice>* getVertices() { return vertices; }
