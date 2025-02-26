@@ -14,6 +14,7 @@ private:
     int capacidade;
 
     void heapify(int i) {
+        if (i < 0 || i >= tamanho) return;  
         int menor = i;
         int esquerda = 2 * i + 1;
         int direita = 2 * i + 2;
@@ -35,24 +36,37 @@ public:
         this->tamanho = 0;
         this->capacidade = capacidade;
         this->heap.resize(capacidade);
+        //TODO
+//std::cout << "Heap initialized with capacity: " << capacidade << ", size: " << tamanho << std::endl;
     }
 
     ~HeapMin() {}
 
-    void inserir(Aresta aresta) {  // Accepts object instead of pointer
-        if (tamanho == capacidade) {
-            capacidade *= 2;
+    void inserir(Aresta aresta) {  
+        //TODO
+//std::cout << "Inserting edge with cost: " << aresta.getCusto() << " into heap of size: " << tamanho << std::endl;
+    
+        // Resize if the heap is full
+        if (tamanho >= capacidade) {
+            capacidade = (capacidade == 0) ? 1 : capacidade * 2;
             heap.resize(capacidade);
+            //TODO
+//std::cout << "Resized heap to capacity: " << capacidade << std::endl;
         }
-
-        tamanho++;
+    
+        // Add the new element at the end
+        heap[tamanho] = aresta;
+        tamanho++; // Increment size AFTER insertion
+    
+        // Heapify up
         int i = tamanho - 1;
-        heap[i] = aresta;  // Store a copy
-
         while (i != 0 && heap[(i - 1) / 2] > heap[i]) {
-            swap(heap[i], heap[(i - 1) / 2]);
+            std::swap(heap[i], heap[(i - 1) / 2]);
             i = (i - 1) / 2;
         }
+    
+        //TODO
+//std::cout << "After insertion, heap size: " << tamanho << std::endl;
     }
 
     Aresta* getRaiz() {
@@ -61,7 +75,9 @@ public:
     }
 
     Aresta extrairMin() {
-        if (tamanho <= 0) return Aresta(nullptr, -1);
+        //TODO
+//std::cout << "Extracting min from heap of size: " << tamanho << std::endl;
+        if (tamanho <= 0) throw std::runtime_error("A heap esta vazia!");
         if (tamanho == 1) {
             tamanho--;
             return heap[0];
@@ -72,6 +88,8 @@ public:
         tamanho--;
 
         heapify(0);
+        //TODO
+//std::cout << "After extraction, heap size: " << tamanho << std::endl;
         return raiz;
     }
 
@@ -99,14 +117,19 @@ public:
 
     void removerPeloId(int idVertice) {
         for (int i = 0; i < tamanho; ++i) {
-            if (heap[i].getDestino()->getId() == idVertice) {
+            if (heap[i].getDestino()->getId() == idVertice && heap[i].getDestino() != nullptr) {
+                
+                //TODO
+//std::cout << "Removing vertex with ID: " << idVertice << std::endl;
                 remover(heap[i]);
                 return;
             }
         }
+        //TODO
+//std::cout << "Vertex with ID: " << idVertice << " not found in heap" << std::endl;
     }
 
-    int getTamanho() {
+    int getTamanho() const {
         return tamanho;
     }
 };
