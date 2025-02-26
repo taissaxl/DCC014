@@ -14,6 +14,8 @@ enable_testing()
 # Adicione o Google Test
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
 
 # Define o padrão de compilação
 set(CMAKE_CXX_STANDARD 14)
@@ -25,12 +27,14 @@ add_library(grafo src/util/fazGrafo.cpp src/estruturas/grafo.cpp src/estruturas/
 add_library(buscaLargura src/algoritmos/largura.cpp) 
 add_library(backtracking src/algoritmos/backtracking.cpp)
 add_library(ordenada src/algoritmos/ordenada.cpp)
+add_library(profundidade src/algoritmos/profundidade.cpp)
 
 
 # Cria o executável
 add_executable(BuscaCidade app/main.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp)
 
-# Cria os executáveis do teste
+# Cria os executáveis dos testes
+
 add_executable(test_lista test/test_lista.cpp)
 add_executable(test_vertice test/test_vertice.cpp)
 add_executable(test_aresta test/test_aresta.cpp)
@@ -41,6 +45,7 @@ add_executable(test_heapMin test/test_heapMin.cpp)
 add_executable(test_buscaOrdenada test/test_buscaOrdenada.cpp)
 add_executable(test_buscaGulosa test/test_buscaGulosa.cpp)
 add_executable(test_buscaAEstrela test/test_buscaAEstrela.cpp)
+add_executable(test_profundidade test/test_profundidade.cpp)
 add_executable(test_buscaLargura test/test_buscaLargura.cpp)
 add_executable(test_backtracking test/test_backtracking.cpp)
 
@@ -57,9 +62,13 @@ target_link_libraries(test_buscaGulosa grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaAEstrela grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaLargura grafo buscaLargura ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_backtracking grafo backtracking ${GTEST_LIBRARIES} pthread)
+target_link_libraries(test_profundidade grafo profundidade ${GTEST_LIBRARIES} pthread)
 
 
 # Add the test to CTest
+target_link_libraries(test_profundidade grafo profundidade ${GTEST_LIBRARIES} pthread)
+
+# Adiciona os testes ao CTest
 add_test(NAME test_lista COMMAND test_lista)
 add_test(NAME test_vertice COMMAND test_vertice)
 add_test(NAME test_fazerGrafoSemClasseGrafo COMMAND test_fazerGrafoSemClasseGrafo)
@@ -72,6 +81,7 @@ add_test(NAME test_buscaGulosa COMMAND test_buscaGulosa)
 add_test(NAME test_buscaAEstrela COMMAND test_buscaAEstrela)
 add_test(NAME test_buscaLargura COMMAND test_buscaLargura)
 add_test(NAME test_backtracking COMMAND test_backtracking)
+add_test(NAME test_profundidade COMMAND test_profundidade)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

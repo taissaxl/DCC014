@@ -27,11 +27,9 @@ bool dfsBacktracking(Grafo* grafo, int atual, int destino, unordered_set<int>& v
             }
         }
     }
-    
-    if (caminho.getUltimo() != NULL) {
-        caminho.remover(caminho.getUltimo()->getElemento());
-    }
-    visitados.erase(atual);
+    // Se nenhum vizinho levou ao destino, remove o último vértice adicionado (backtracking)
+    caminho.removerUltimo();
+
     return false;
 }
 
