@@ -52,6 +52,7 @@ TEST_F(BuscaBacktrackingTest, TestBuscaBacktracking)
     caminhoEsperado.adicionar(grafo->getVertice(CIDADE_A));
     caminhoEsperado.adicionar(grafo->getVertice(CIDADE_B));
     caminhoEsperado.adicionar(grafo->getVertice(CIDADE_F));
+    caminhoEsperado.adicionar(grafo->getVertice(CIDADE_C));
     caminhoEsperado.adicionar(grafo->getVertice(CIDADE_D));
 
     // Verifica se os tamanhos dos caminhos são iguais

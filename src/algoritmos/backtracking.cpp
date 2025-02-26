@@ -30,9 +30,8 @@ bool dfsBacktracking(Grafo* grafo, int atual, int destino, unordered_set<int>& v
         }
     }
     // Se nenhum vizinho levou ao destino, remove o último vértice adicionado (backtracking)
-    if (caminho.getUltimo() != NULL) {
-        caminho.remover(caminho.getUltimo()->getElemento());
-    }
+    caminho.removerUltimo();
+
     return false;
 }
 
