@@ -79,6 +79,8 @@ TEST_F(BuscaOrdenadaTest, TestExploraMenorAberto) {
 
     ASSERT_FALSE(fila.exploraMenorAberto());
 
+}
+
 TEST_F(BuscaOrdenadaTest, TestReconstruirCaminho) {
     Grafo* grafo = new Grafo();
     int idA = grafo->adicionarVertice();

@@ -24,6 +24,7 @@ add_library(lista src/estruturas/lista.cpp)
 add_library(grafo src/util/fazGrafo.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp src/algoritmos/gulosa.cpp src/algoritmos/aEstrela.cpp)
 add_library(buscaLargura src/algoritmos/largura.cpp) 
 add_library(backtracking src/algoritmos/backtracking.cpp)
+add_library(ordenada src/algoritmos/ordenada.cpp)
 
 
 # Cria o executável
@@ -51,7 +52,7 @@ target_link_libraries(test_aresta lista ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_grafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_fazGrafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_heapMin grafo ${GTEST_LIBRARIES} pthread)
-target_link_libraries(test_buscaOrdenada grafo ${GTEST_LIBRARIES} pthread)
+target_link_libraries(test_buscaOrdenada grafo ordenada ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaGulosa grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaAEstrela grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaLargura grafo buscaLargura ${GTEST_LIBRARIES} pthread)
