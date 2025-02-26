@@ -104,7 +104,7 @@ Lista<Vertice> buscaProfundidade(Grafo* grafo, int idOrigem, int idDestino) {
         // Depuração: imprimir a relação de pais antes de reconstruir o caminho
         std::cout << "Mapa de pais registrado:" << std::endl;
         for (const auto& par : fila.getPais()) { // getPais() precisa ser implementado na classe
-            std::cout << "Filho: " << par.first << " -> Pai: " << par.second << std::endl;
+            //std::cout << "Filho: " << par.first << " -> Pai: " << par.second << std::endl;
         }
 
         return fila.reconstruirCaminho();

@@ -25,7 +25,7 @@ inline bool operator>(const Aresta& a1, const Aresta& a2) {
 }
 
 inline bool operator<(const Aresta& a1, const Aresta& a2) {
-    return a1.getCusto() > a2.getCusto();
+    return a1.getCusto() < a2.getCusto();
 }
 
 #endif // ARESTA_H

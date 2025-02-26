@@ -1,6 +1,15 @@
 # DCC014
 Projeto realizado durante a disciplina Inteligência Artificial
 
+## Como rodar
+
+No diretório raíz do projeto, rode o comando
+```
+sh start.sh
+```
+
+E siga as intruções do menu.
+
 ## Explicação da estrutura do código
 
 O código possui as seguintes classes:

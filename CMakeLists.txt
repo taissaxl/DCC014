@@ -45,6 +45,7 @@ add_executable(test_buscaOrdenada test/test_buscaOrdenada.cpp)
 add_executable(test_buscaGulosa test/test_buscaGulosa.cpp)
 add_executable(test_buscaAEstrela test/test_buscaAEstrela.cpp)
 add_executable(test_profundidade test/test_profundidade.cpp)
+add_executable(test_profundidade test/test_profundidade.cpp)
 add_executable(test_buscaLargura test/test_buscaLargura.cpp)
 add_executable(test_backtracking test/test_backtracking.cpp)
 

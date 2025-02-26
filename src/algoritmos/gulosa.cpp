@@ -39,7 +39,7 @@ class FilaGulosa {
             Vertice* verticeVisitado = verticeMenorAberto.getDestino();
             int idAtual = verticeVisitado->getId();
 
-            std::cout << "Explorando vértice: " << idAtual << std::endl;
+            //std::cout << "Explorando vértice: " << idAtual << std::endl;
 
             if (idAtual == idDestino) {
                 fechados.inserir(verticeMenorAberto);

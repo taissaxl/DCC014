@@ -1,100 +1,98 @@
 #ifndef ORDENADA_H
 #define ORDENADA_H
 
-#include "lista.h"
+#include "algoritmos/ordenada.h"
 #include "heapMin.h"
-#include "aresta.h"
-#include <unordered_map>
 #include "vertice.h"
+#include "aresta.h"
+#include "lista.h"
 #include "grafo.h"
+#include <unordered_map>
+#include <unordered_set>
 
 #define CAPACIDADE 20
-#include <unordered_map>
-#include <cassert>
 
-class Fila {
-    private: 
+class FilaOrdenada {
+    private:
         HeapMin abertos;
-        HeapMin fechados;
+        std::unordered_set<int> fechados_ids;
+        std::unordered_map<int, int> pais;
+        std::unordered_map<int, int> gCustoVertice;
+        Grafo* grafo;
         int idDestino;
         int idVisitado;
-        Grafo* grafo;
-
-        std::unordered_map<int, int> pais; 
-        std::unordered_map<int, int> minCustoVertice;  
-
+    
     public:
-        Fila(int idDestino, int idVisitado, Grafo* grafo)
-            : idDestino(idDestino), idVisitado(idVisitado), 
-              abertos(CAPACIDADE), fechados(CAPACIDADE), grafo(grafo) {
-
-                Vertice* vertice = grafo->getVertice(idVisitado);
-                assert(vertice != nullptr && "Erro: Vertice inicial não encontrado no grafo!");
-                
-                minCustoVertice[idVisitado] = 0;
-                Aresta aresta(vertice, 0);
-                abertos.inserir(aresta);
-            }
+        FilaOrdenada(int idDestino, int idVisitado, Grafo* grafo)
+            : idDestino(idDestino), idVisitado(idVisitado), grafo(grafo), abertos(CAPACIDADE) {
+    
+            gCustoVertice[idVisitado] = 0;
+            Aresta arestaInicial(grafo->getVertice(idVisitado), 0);
+            abertos.inserir(arestaInicial);
+        }
+    
 
         bool exploraMenorAberto() {
-            if (abertos.getTamanho() == 0) return false;
-
-            Aresta verticeMenorAberto = abertos.extrairMin();
-            Vertice* verticeVisitado = verticeMenorAberto.getDestino();
-            
-            assert(verticeVisitado != nullptr && "Erro: verticeVisitado é nullptr em exploraMenorAberto!");
-            
-            int idAtual = verticeVisitado->getId();
-
-            if (idAtual == idDestino) {
-                fechados.inserir(verticeMenorAberto);
-                return false;
+            if (abertos.getTamanho() == 0) {
+                return false; 
             }
-
-            Lista<Aresta>* listaArestas = verticeVisitado->getArestas();
-            assert(listaArestas != nullptr && "Erro: listaArestas é nullptr em exploraMenorAberto!");
-
-            for (Aresta* aresta : *listaArestas) {
+    
+            Aresta atualAresta = abertos.extrairMin();
+            Vertice* verticeAtual = atualAresta.getDestino();
+            int idAtual = verticeAtual->getId();
+    
+            if (fechados_ids.find(idAtual) != fechados_ids.end()) {
+                return true;
+            }
+    
+            
+            if (idAtual == idDestino) {
+                fechados_ids.insert(idAtual);
+                return false; 
+            }
+    
+            fechados_ids.insert(idAtual);
+    
+            Lista<Aresta>* arestas = verticeAtual->getArestas();
+            for (Aresta* aresta : *arestas) {
                 Vertice* verticeFilho = aresta->getDestino();
-                assert(verticeFilho != nullptr && "Erro: aresta apontando para um vertice nulo!");
-                
                 int idFilho = verticeFilho->getId();
-                int novoCusto = minCustoVertice[idAtual] + aresta->getCusto();
-
-                if (minCustoVertice.find(idFilho) == minCustoVertice.end() || novoCusto < minCustoVertice[idFilho]) {
-                    if (minCustoVertice.find(idFilho) != minCustoVertice.end()) {
-                        abertos.removerPeloId(idFilho);
-                    }
-                    minCustoVertice[idFilho] = novoCusto;
+    
+                if (fechados_ids.find(idFilho) != fechados_ids.end()) {
+                    continue; 
+                }
+    
+                int novoCusto = gCustoVertice[idAtual] + aresta->getCusto();
+    
+                if (gCustoVertice.find(idFilho) == gCustoVertice.end() || novoCusto < gCustoVertice[idFilho]) {
+                    gCustoVertice[idFilho] = novoCusto;
                     pais[idFilho] = idAtual;
-                    
+                    abertos.removerPeloId(idFilho);
                     Aresta novaAresta(verticeFilho, novoCusto);
                     abertos.inserir(novaAresta);
                 }
             }
-            
-            fechados.inserir(verticeMenorAberto);
+    
             return true;
         }
-
+    
         Lista<Vertice> reconstruirCaminho() {
             Lista<Vertice> caminho;
+            if (gCustoVertice.find(idDestino) == gCustoVertice.end()) {
+                return caminho;
+            }
             int atual = idDestino;
-
             while (pais.find(atual) != pais.end()) {
-                assert(grafo->getVertice(atual) != nullptr && "Erro: reconstruirCaminho encontrou um vértice nulo!");
                 caminho.inserirNoInicio(grafo->getVertice(atual));
                 atual = pais[atual];
             }
 
-            assert(grafo->getVertice(idVisitado) != nullptr && "Erro: vértice inicial não encontrado no caminho!");
             caminho.inserirNoInicio(grafo->getVertice(idVisitado));
 
             return caminho;
         }
-};
-
-
+    };
+    
 Lista<Vertice> buscaOrdenada(Grafo* grafo, int idOrigem, int idDestino);
 
-#endif //ORDENADA_H
+#endif 

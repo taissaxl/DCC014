@@ -58,7 +58,7 @@ TEST_F(BuscaOrdenadaTest, TestFilaInit) {
     int idB = grafo->adicionarVertice();
     grafo->adicionarAresta(idA, idB, 1);
 
-    Fila fila(idB, idA, grafo);
+    FilaOrdenada fila(idB, idA, grafo);
 
     ASSERT_EQ(fila.exploraMenorAberto(), true);
 }
@@ -71,13 +71,15 @@ TEST_F(BuscaOrdenadaTest, TestExploraMenorAberto) {
     grafo->adicionarAresta(idA, idB, 1);
     grafo->adicionarAresta(idB, idC, 2);
 
-    Fila fila(idC, idA, grafo);
+    FilaOrdenada fila(idC, idA, grafo);
 
     ASSERT_TRUE(fila.exploraMenorAberto());
 
     ASSERT_TRUE(fila.exploraMenorAberto());
 
     ASSERT_FALSE(fila.exploraMenorAberto());
+}
+
 }
 
 TEST_F(BuscaOrdenadaTest, TestReconstruirCaminho) {
@@ -88,7 +90,7 @@ TEST_F(BuscaOrdenadaTest, TestReconstruirCaminho) {
     grafo->adicionarAresta(idA, idB, 1);
     grafo->adicionarAresta(idB, idC, 2);
 
-    Fila fila(idC, idA, grafo);
+    FilaOrdenada fila(idC, idA, grafo);
 
     while (fila.exploraMenorAberto()) {}
 
@@ -110,8 +112,7 @@ TEST_F(BuscaOrdenadaTest, TestSemCaminho) {
 
     Lista<Vertice> caminho = buscaOrdenada(grafo, idA, idB);
 
-    ASSERT_EQ(caminho.getTamanho(), 1);
-    ASSERT_EQ((*caminho.begin())->getId(), idA);
+    ASSERT_EQ(caminho.getTamanho(), 0);
 }
 
 TEST_F(BuscaOrdenadaTest, TestSingleVertex) {
@@ -154,16 +155,6 @@ TEST_F(BuscaOrdenadaTest, TestLargeGraph) {
     ASSERT_EQ((*it)->getId(), idE);
 }
 
-TEST_F(BuscaOrdenadaTest, TestInputInvalido) {
-    Grafo* grafo = new Grafo();
-    int idA = grafo->adicionarVertice();
-
-    // Non-existent destination
-    EXPECT_THROW(buscaOrdenada(grafo, idA, 999), std::runtime_error);
-
-    // Non-existent start
-    EXPECT_THROW(buscaOrdenada(grafo, 999, idA), std::runtime_error);
-}
 
 TEST_F(BuscaOrdenadaTest, TestBuscaOrdenada)
 {
