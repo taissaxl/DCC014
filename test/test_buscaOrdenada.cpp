@@ -78,6 +78,7 @@ TEST_F(BuscaOrdenadaTest, TestExploraMenorAberto) {
     ASSERT_TRUE(fila.exploraMenorAberto());
 
     ASSERT_FALSE(fila.exploraMenorAberto());
+}
 
 TEST_F(BuscaOrdenadaTest, TestReconstruirCaminho) {
     Grafo* grafo = new Grafo();
