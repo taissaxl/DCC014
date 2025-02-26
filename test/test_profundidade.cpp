@@ -3,7 +3,7 @@
 #include "fazGrafo.h"
 #include "lista.h"
 #include "vertice.h"
-#include "profundidade.h"
+#include "algoritmos/profundidade.h"
 #include <iostream> // Para mensagens de depuração
 
 class BuscaProfundidadeTest : public ::testing::Test {

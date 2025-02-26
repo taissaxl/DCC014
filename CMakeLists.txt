@@ -23,7 +23,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Adiciona bibliotecas
 add_library(lista src/estruturas/lista.cpp)
-add_library(grafo src/util/fazGrafo.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp src/algoritmos/gulosa.cpp src/algoritmos/aEstrela.cpp)
+add_library(grafo src/util/fazGrafo.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp)
+add_library(buscaGulosa src/algoritmos/gulosa.cpp)
+add_library(buscaAEstrela src/algoritmos/aEstrela.cpp)
 add_library(buscaLargura src/algoritmos/largura.cpp) 
 add_library(backtracking src/algoritmos/backtracking.cpp)
 add_library(ordenada src/algoritmos/ordenada.cpp)
@@ -31,7 +33,8 @@ add_library(profundidade src/algoritmos/profundidade.cpp)
 
 
 # Cria o executável
-add_executable(BuscaCidade app/main.cpp src/estruturas/grafo.cpp src/estruturas/lista.cpp)
+add_executable(BuscaCidade app/main.cpp)
+target_link_libraries(BuscaCidade grafo buscaGulosa buscaAEstrela buscaLargura backtracking ordenada profundidade)
 
 # Cria os executáveis dos testes
 
@@ -58,8 +61,8 @@ target_link_libraries(test_grafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_fazGrafo grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_heapMin grafo ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaOrdenada grafo ordenada ${GTEST_LIBRARIES} pthread)
-target_link_libraries(test_buscaGulosa grafo ${GTEST_LIBRARIES} pthread)
-target_link_libraries(test_buscaAEstrela grafo ${GTEST_LIBRARIES} pthread)
+target_link_libraries(test_buscaGulosa grafo buscaGulosa ${GTEST_LIBRARIES} pthread)
+target_link_libraries(test_buscaAEstrela grafo buscaAEstrela ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_buscaLargura grafo buscaLargura ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_backtracking grafo backtracking ${GTEST_LIBRARIES} pthread)
 target_link_libraries(test_profundidade grafo profundidade ${GTEST_LIBRARIES} pthread)
