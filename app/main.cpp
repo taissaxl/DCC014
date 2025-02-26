@@ -24,12 +24,8 @@ int calculaCustoCaminho(Lista<Vertice> caminho) {
     while (it != caminho.end()) {
         Vertice* current = *it;
         
-        // Get edges from previous vertex
         Lista<Aresta>* arestas = prev->getArestas();
         bool found = false;
-        
-        // Iterate through edges using traditional loop
-        // (assuming your Lista class has some way to iterate elements)
         for (auto itAresta = arestas->begin(); itAresta != arestas->end(); ++itAresta) {
             Aresta* aresta = *itAresta;
             if (aresta->getDestino()->getId() == current->getId()) {
@@ -39,9 +35,7 @@ int calculaCustoCaminho(Lista<Vertice> caminho) {
             }
         }
         
-        // Safety check - if no edge found, could be a problem with the path
         if (!found) {
-            // Handle error or throw exception
             cout << "Error: No edge found between vertices " << prev->getId() 
                  << " and " << current->getId() << endl;
         }
