@@ -17,6 +17,7 @@ class Lista {
         ~Lista();
         void adicionar(T* elemento);
         void remover(T* elemento);
+        void removerUltimo();
         No<T>* getPrimeiro();
         No<T>* getUltimo();
         bool estaVazia();

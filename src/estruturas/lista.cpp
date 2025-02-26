@@ -91,6 +91,26 @@ void Lista<T>::inserirNoInicio(T* elemento) {
     this->tamanho++;
 }
 
+template <typename T>
+void Lista<T>::removerUltimo() {
+    if (this->primeiro == NULL) return; // Lista vazia, nada a remover
+
+    if (this->primeiro == this->ultimo) { // Apenas um elemento na lista
+        delete this->primeiro;
+        this->primeiro = NULL;
+        this->ultimo = NULL;
+    } else {
+        No<T>* atual = this->primeiro;
+        while (atual->getProximo() != this->ultimo) { // Encontra o penúltimo nó
+            atual = atual->getProximo();
+        }
+        delete this->ultimo;
+        this->ultimo = atual;
+        this->ultimo->setProximo(NULL);
+    }
+    this->tamanho--;
+}
+
 template class Lista<int>;
 template class Lista<Aresta>;
 template class Lista<Vertice>;
