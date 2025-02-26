@@ -91,7 +91,7 @@ int main (int argc, char *argv[]) {
         cout << v->getId() << " ";
     }
     cout << endl;
-    /*
+    
     cout << "Buscando caminho entre Juiz de Fora e Vicosa pela busca ordenada..." << endl;
     Lista<Vertice> caminhoBuscaOrdenada = buscaOrdenada(grafo, JUIZ_DE_FORA, VICOSA);
     cout << "Caminho encontrado pela busca ordenada: " << endl;
@@ -100,14 +100,14 @@ int main (int argc, char *argv[]) {
     }
     cout << endl;
 
-    int custoBuscaOrdenada = calculaCustoCaminho(caminhoBuscaOrdenada);*/
+    int custoBuscaOrdenada = calculaCustoCaminho(caminhoBuscaOrdenada);
     int custoBuscaAEstrela = calculaCustoCaminho(caminhoBuscaAEstrela);
     int custoBuscaLargura = calculaCustoCaminho(caminhoBuscaLargura);
     int custoBuscaBacktracking = calculaCustoCaminho(caminhoBuscaBacktracking);
     int custoBuscaGulosa = calculaCustoCaminho(caminhoBuscaGulosa);
     int custoBuscaProfundidade = calculaCustoCaminho(caminhoBuscaProfundidade);
 
-    //cout << "Custo da busca ordenada: " << custoBuscaOrdenada << endl;
+    cout << "Custo da busca ordenada: " << custoBuscaOrdenada << endl;
     cout << "Custo da busca AEstrela: " << custoBuscaAEstrela << endl;
     cout << "Custo da busca largura: " << custoBuscaLargura << endl;
     cout << "Custo da busca backtracking: " << custoBuscaBacktracking << endl;

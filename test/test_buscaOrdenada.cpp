@@ -58,7 +58,7 @@ TEST_F(BuscaOrdenadaTest, TestFilaInit) {
     int idB = grafo->adicionarVertice();
     grafo->adicionarAresta(idA, idB, 1);
 
-    Fila fila(idB, idA, grafo);
+    FilaOrdenada fila(idB, idA, grafo);
 
     ASSERT_EQ(fila.exploraMenorAberto(), true);
 }
@@ -71,7 +71,7 @@ TEST_F(BuscaOrdenadaTest, TestExploraMenorAberto) {
     grafo->adicionarAresta(idA, idB, 1);
     grafo->adicionarAresta(idB, idC, 2);
 
-    Fila fila(idC, idA, grafo);
+    FilaOrdenada fila(idC, idA, grafo);
 
     ASSERT_TRUE(fila.exploraMenorAberto());
 
@@ -89,7 +89,7 @@ TEST_F(BuscaOrdenadaTest, TestReconstruirCaminho) {
     grafo->adicionarAresta(idA, idB, 1);
     grafo->adicionarAresta(idB, idC, 2);
 
-    Fila fila(idC, idA, grafo);
+    FilaOrdenada fila(idC, idA, grafo);
 
     while (fila.exploraMenorAberto()) {}
 
